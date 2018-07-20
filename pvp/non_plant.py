@@ -9,5 +9,3 @@ class Non_Plant(Organism):
 
     def attack(self, plant):
         plant.hp -= self.dmg
-
-
