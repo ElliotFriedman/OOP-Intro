@@ -1,5 +1,4 @@
 from organism import Organism
-from homosapien import Human
 
 class Plant(Organism):
     cost = 35
@@ -8,5 +7,13 @@ class Plant(Organism):
         self.powerup = 0
 
     def attack(self, nonplant):
-        self
+        nonplant.hp -= self.dmg + self.powerup
+
+    def apply_powerup(self, card):
+        self.powerup += card
+
+    def weaken_powerup(self, card):
+        self.powerup /= 2
+
+
 
