@@ -3,7 +3,8 @@ from organism import Organism
 class Plant(Organism):
     cost = 35
 
-    super().__init__():
+    def __init__(self):
+        super().__init__()
         self.powerup = 0
 
     def attack(self, nonplant):
