@@ -74,4 +74,11 @@ class Game():
         self.board.item[row][self.width - 1].enqueue(nplant)
         self.non_plants += 1
 
+    def place_plant(self, row, col):
+        if col != self.width - 1 and is_nonplant(row, col) == False and is_plant(row, col) == False:
+            plant = Plant()
+            self.board.item[row][col].enqueue(plant)
+            self.cash -= Plant.cost
+
+
 
