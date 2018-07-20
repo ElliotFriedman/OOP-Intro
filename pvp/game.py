@@ -63,4 +63,15 @@ class Game():
         else:
             False
 
+    def remove(self, row, col):
+        if is_nonplant(row, col):
+            self.cash += self.board.item[row][col].front()
+            self.non_plants -= 1
+        self.board.item[row][col].dequeue()
+
+    def place_nonplant(self, row):
+        nplant = Non_Plant()
+        self.board.item[row][self.width - 1].enqueue(nplant)
+        self.non_plants += 1
+
 
