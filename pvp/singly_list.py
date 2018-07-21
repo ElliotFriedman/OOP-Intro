@@ -13,10 +13,6 @@ class SinglyList():
     @property
     def get_head(self):
         return self.head
-    
-#    @head.setter
-#    def head(self, val):
-#        self.head = val
   
     def peek(self):
         return self.get_head().content()
@@ -42,18 +38,22 @@ class SinglyList():
             tmp.next = node
         else:
             self.head = node
-        
 
     def remove_tail(self):
-        tmp = self.next
+        tmp = self.head
+        prev = tmp
+        if tmp.next is None:
+            self.head = None
         while tmp.next is not None:
             tmp = tmp.next
-        tmp = None
+            if tmp.next is not None:
+                prev = tmp
+        prev.next = None
 
     def remove_head(self):
         tmp = None
         if self.head is not None and self.head.next is not None:
-            tmp = self.head.value
+            tmp = self.head.content
             self.head = self.head.next
         elif self.head is not None:
             tmp = self.head.value
