@@ -70,7 +70,7 @@ class Game():
         if self.is_nonplant(row, col) == True:
             self.cash += 20
             self.non_plants -= 1
-        #self.board[row].dequeue()
+        self.board[row][col].dequeue()
 
     def place_nonplant(self, row):
         nplant = Non_Plant()

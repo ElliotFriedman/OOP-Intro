@@ -30,7 +30,7 @@ class Queue():
     
     #set the head to the next node
     def dequeue(self):
-        if self.head.next is not None:
+        if self.head is not None and self.head.next is not None:
             self.head = self.head.next
         else:
             self.head = None
