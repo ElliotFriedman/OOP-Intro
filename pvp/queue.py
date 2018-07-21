@@ -1,44 +1,31 @@
-class Node():
-    def __init__(self, value, next = None):
-        self.data = value
-        self.next = next
+from singly_list import SinglyList
 
+ 
 class Queue():
-    def __init__(self, node = None):
-        if node is not None:
+    def __init__(self, alist = None):
+        #not a node, linked list
+        if alist is not None:
             self._size = 1
         else:
             self._size = 0
-        self.head = node
+        self.head = alist
 
     def isEmpty(self):
-        if self is None:
-            return None
+        if self.head is None:
+            return True
         else:
             return False
 
-    #go to the end of the list and create a next value
     def enqueue(self, data):
-        tmp = self.head
-        n = Node(data)
-        if tmp is not None:
-            while tmp.next is not None:
-                tmp = tmp.next
-            tmp.next = n
-        n.next = None
+        self.head.add_tail(createNode(data))
         self._size += 1
     
-    #set the head to the next node
     def dequeue(self):
-        if self.head is not None and self.head.next is not None:
-            self.head = self.head.next
-        else:
-            self.head = None
-        self._size -= 1
+        return remove_head()
     
     def front(self):
-        if self.head is not None:
-            return self.head.data
+        if self.head.isEmpty() == False:
+            return self.peek()
         return None
     
     @property
@@ -50,7 +37,7 @@ class Queue():
         _str = []
         i = 0
         while tmp is not None:
-            _str.append(str(tmp.data))
+            _str.append(str(tmp.peek()))
             tmp = tmp.next
             i += 1
         _str = _str[::-1]

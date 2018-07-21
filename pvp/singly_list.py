@@ -1,8 +1,8 @@
 from node import Node
 
-class SinglyList(object):
+class SinglyList():
     def __init__(self):
-        self.h = None
+        self.head = None
 
     def __iter__(self):
         current = self.head
@@ -11,13 +11,19 @@ class SinglyList(object):
             current = current.next
     
     @property
-    def head(self):
-        return self.h
+    def get_head(self):
+        return self.head
     
-    @head.setter
-    def head(self, val):
-        self.h = val
-    
+#    @head.setter
+#    def head(self, val):
+#        self.head = val
+  
+    def peek(self):
+        return self.get_head().content()
+
+    def createNode(self, data):
+        return Node(data)
+
     def isEmpty(self):
         return self.head == None
     
@@ -27,3 +33,26 @@ class SinglyList(object):
         else:
             node.next = self.head
             self.head = node
+
+    def add_tail(self, node):
+        tmp = self.head
+        while tmp.next is not None:
+            tmp = tmp.next
+        tmp.next = node
+
+    def remove_tail(self):
+        tmp = self.next
+        while tmp.next is not None:
+            tmp = tmp.next
+        tmp = None
+
+    def remove_head(self):
+        tmp = None
+        if self.head is not None and self.head.next is not None:
+            tmp = self.head.value
+            self.head = self.head.next
+        elif self.head is not None:
+            tmp = self.head.value
+            self.head = None
+        self._size -= 1
+        return tmp

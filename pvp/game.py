@@ -1,3 +1,4 @@
+import pdb
 from singly_list import SinglyList
 from queue import Queue
 from stack import Stack
@@ -24,17 +25,15 @@ class Game():
 
         for i in range(100):
             self.deck.push(random.randint(1, 5))
-        self.board = []
 
-        self.board = []
+        self.board = [] #SinglyList Next points to the next array.
+                        #Data points to the list that stores the queues
+
         for i in range(self.height):
-            self.board.append([])
-            #self.board.append(Queue())
-            #print(self.board)
+            self.board.append([]) #;
             for z in range(self.width):
-                #print("i:", i, "z:", z)
                 self.board[i].append(Queue())
-                self.board[i][z].enqueue(".")
+                print(self.board[i][z])
 
     def draw(self):
         print("Cash: $", self.cash, "\nWaves: ", self.waves_num, sep = "")
@@ -55,7 +54,8 @@ class Game():
         print()
 
     def is_nonplant(self, row, col):
-        if type(self.board[row][col]) == Non_Plant:
+        print(self.board[row][col].isEmpty())
+        if type(self.board[row][col].front()) == Non_Plant:
             return True
         else:
             False
@@ -67,14 +67,22 @@ class Game():
             False
 
     def remove(self, row, col):
+        print("Total amount of non_plants", self.non_plants)
+        print("cash before removal", self.cash)
         if self.is_nonplant(row, col) == True:
-            self.cash += 20
             self.non_plants -= 1
+        self.cash += self.board[row][col].front().worth
+
+        #else:
+        #    self.cash += 35
+        print("cash after removal", self.cash)
         self.board[row][col].dequeue()
+        print("Total amount of non_plants", self.non_plants)
+
 
     def place_nonplant(self, row):
         nplant = Non_Plant()
-        self.board[row].enqueue(nplant)
+        self.board[row][self.width - 1].enqueue(nplant)
         self.non_plants += 1
 
     def place_plant(self, row, col):
