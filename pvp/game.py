@@ -28,10 +28,12 @@ class Game():
 
         self.board = []
         for i in range(self.height):
-            self.board[i].append([])
+            self.board.append([])
             #self.board.append(Queue())
+            #print(self.board)
             for z in range(self.width):
-                self.board[i][z] = (Queue())
+                #print("i:", i, "z:", z)
+                self.board[i].append(Queue())
                 self.board[i][z].enqueue(".")
 
     def draw(self):
@@ -53,11 +55,10 @@ class Game():
         print()
 
     def is_nonplant(self, row, col):
-
         if type(self.board[row][col]) == Non_Plant:
             return True
         else:
-             False
+            False
 
     def is_plant(self, row, col):
         if type(self.board[row][col]) == Plant:
@@ -66,10 +67,10 @@ class Game():
             False
 
     def remove(self, row, col):
-        if is_nonplant(row, col):
+        if self.is_nonplant(row, col) == True:
             self.cash += 20
             self.non_plants -= 1
-        self.board[row].dequeue()
+        #self.board[row].dequeue()
 
     def place_nonplant(self, row):
         nplant = Non_Plant()
@@ -77,7 +78,7 @@ class Game():
         self.non_plants += 1
 
     def place_plant(self, row, col):
-        if col != self.width - 1 and is_nonplant(row, col) == False and is_plant(row, col) == False:
+        if col != self.width - 1 and self.is_nonplant(row, col) == False and self.is_plant(row, col) == False:
             plant = Plant()
             self.board.item[row][col].enqueue(plant)
             self.cash -= Plant.cost
