@@ -1,4 +1,5 @@
 from organism import Organism
+from card import Card
 
 class Plant(Organism):
     cost = 35
@@ -11,9 +12,9 @@ class Plant(Organism):
         nonplant.hp -= self.dmg + self.powerup
 
     def apply_powerup(self, card):
-        self.powerup += card
+        self.powerup += card.power
 
-    def weaken_powerup(self, card):
+    def weaken_powerup(self):
         self.powerup /= 2
 
 

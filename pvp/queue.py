@@ -3,7 +3,7 @@ class Node():
         self.data = value
         self.next = next
 
-class queue(object):
+class Queue():
     def __init__(self, node = None):
         if node is not None:
             self._size = 1
@@ -27,7 +27,7 @@ class queue(object):
             tmp.next = n
         n.next = None
         self._size += 1
-        
+    
     #set the head to the next node
     def dequeue(self):
         if self.head.next is not None:
@@ -35,16 +35,16 @@ class queue(object):
         else:
             self.head = None
         self._size -= 1
-
+    
     def front(self):
         if self.head is not None:
             return self.head.data
         return None
-
+    
     @property
     def size(self):
         return self._size
-
+    
     def __str__(self):
         tmp = self.head
         _str = []
