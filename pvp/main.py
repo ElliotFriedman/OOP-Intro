@@ -21,22 +21,15 @@ n.add_tail(Node(5))
 n.add_tail(Node(5))
 n.add_tail(Node(5))
 n.add_head(Node(9))
-#print_list(n)
 
 
 z = n.head
 x = Queue(z)
-#print("size before 2 ", x.size)
 x.enqueue(99)
 x.enqueue(120)
-#print("size after 2", x.size)
 
 
 while x.isEmpty() == False:
     print()
     print("value dequeued", x.dequeue())
-    #print("size of queue", x.size)
     print()
-    #printn(x.head)
-
-
