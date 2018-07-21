@@ -36,9 +36,13 @@ class SinglyList():
 
     def add_tail(self, node):
         tmp = self.head
-        while tmp.next is not None:
-            tmp = tmp.next
-        tmp.next = node
+        if tmp is not None:
+            while tmp.next is not None:
+                tmp = tmp.next
+            tmp.next = node
+        else:
+            self.head = node
+        
 
     def remove_tail(self):
         tmp = self.next
@@ -54,5 +58,4 @@ class SinglyList():
         elif self.head is not None:
             tmp = self.head.value
             self.head = None
-        self._size -= 1
         return tmp
